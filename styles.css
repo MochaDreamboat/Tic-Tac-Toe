@@ -21,6 +21,14 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 10px;
+}
+
+img {
+    display: hidden;
+    position: absolute;
+    height: 75%;
+    width: 75%;
 }
 
 #gameboard {
@@ -37,9 +45,9 @@ main {
 }
 
 .spot {
+    position: relative;
     background-color: pink;
-}
-
-.marker {
-    /* Scale svg's appropriately to fit spot */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
