@@ -28,21 +28,18 @@ const gameBoard = (() => {
 
     }
 
-    const updateBoardArray = function (spot) {
-        let position = spot.getAttribute('data-index-number');
-        if (gameboard[position] != null) {
-            gameboard[position] = gameFlow.currentPlayer.marker
-        }
-
+    const updateBoardArray = function (position) {
+        gameboard[position] = gameFlow.currentPlayer.marker
     }
     const placeMarker = function () {
         spotsArray.forEach((spot) => {
-            let position = spot.getAttribute('data-index-number');
-            if (gameboard[position] != null) {
-                alert('Please choose an empty spot.')
-            }
+            const position = spot.getAttribute('data-index-number');
             spot.addEventListener('click', () => {
-                updateBoardArray(spot)
+                if (gameboard[position] != null) {
+                    alert('Please choose an empty spot.');
+                    return
+                }
+                updateBoardArray(position)
                 let marker = setMarker()
                 spot.appendChild(marker);
                 gameFlow.switchPlayer()
@@ -75,8 +72,7 @@ const gameFlow = (() => {
 
     const switchPlayer = () => (gameFlow.currentPlayer == playerOne ? gameFlow.currentPlayer = playerTwo : gameFlow.currentPlayer = playerOne) 
     const checkWin = function () {
-        // if any set of the above gameboard indexes are occupied and have the same marker,
-        // notify current player's win, reset board, and log player win.
+        
     }
 
 
