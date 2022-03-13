@@ -63,7 +63,7 @@ gameBoard.placeMarker()
 
 // Facilitates 
 const gameFlow = (() => {
-    // Create functions for game flow
+    // Controls player turns and checks for win conditions. (Still need to implement tie condition)
     'use strict';
     const playerOne = player('Player One', 'X', 0);
     const playerTwo = player('Player Two', 'O', 0);
@@ -78,9 +78,11 @@ const gameFlow = (() => {
         [0, 4, 8],
         [2, 4, 6]
     ];
-    const gameStatus = document.querySelector('#game-status')
 
+    const gameStatus = document.querySelector('#game-status')
     let currentPlayer = playerOne;
+
+    // TASK: Implement New Game and board reset capabilities. Incorporate recording wins w/ Player object.
 
     const switchPlayer = () => (gameFlow.currentPlayer == playerOne ? gameFlow.currentPlayer = playerTwo : gameFlow.currentPlayer = playerOne) 
     const checkWin = function () {
