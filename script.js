@@ -1,7 +1,7 @@
 // Create a player constructor and assign relevant functions to its prototype.
 
-const player = (marker, wins) => {
-    return {marker, wins};
+const player = (name, marker, wins) => {
+    return {name, marker, wins};
 };
 
 // Facilitates game's UI and records positions of markers.
@@ -65,8 +65,8 @@ gameBoard.placeMarker()
 const gameFlow = (() => {
     // Create functions for game flow
     'use strict';
-    const playerOne = player('X', 0);
-    const playerTwo = player('O', 0);
+    const playerOne = player('Player One', 'X', 0);
+    const playerTwo = player('Player Two', 'O', 0);
 
     const winConditions = [
         [0, 1 ,2],
@@ -78,6 +78,7 @@ const gameFlow = (() => {
         [0, 4, 8],
         [2, 4, 6]
     ];
+    const gameStatus = document.querySelector('#game-status')
 
     let currentPlayer = playerOne;
 
@@ -89,13 +90,13 @@ const gameFlow = (() => {
             const check = (spot) => (currentBoard[spot] ==  gameFlow.currentPlayer.marker)
             let win = winConditions[i].every(check)
             if (win == true) {
-                console.log('You win!')
+                console.log(`${gameFlow.currentPlayer.name} wins!`)
+                gameStatus.innerHTML = `${gameFlow.currentPlayer.name} wins!`
                 return win
-            } else {
-                switchPlayer()
-                continue
             }
         }
+        switchPlayer()
+        gameStatus.innerHTML = `${gameFlow.currentPlayer.name}'s turn.`
         return
     }
 
